@@ -4,20 +4,24 @@
 <form action="add.php" method="post">
 Country: <select name="country">
            <option value="UK">UK</option>
-           <option value="US">US</option>
+           <option value="DE">Germany</option>
          </select>
-Standard Name: <input type="text" name="name" />
-Description: <input type="text" name="descr" /><br><br>
+Document Number: <input type="text" name="dnum" />
+Description: <input type="text" name="descr" />
+Publisher: <input type="text" name="publ" />
+Status: <input type="text" name="status" />
+Publication Date: <input type="text" name="date" />
+<br><br><br><br><br>
+
 
 <input type="submit" />
 </form>
-<h1> List of UK database contents </h1>
 </body>
 </html>
 
 <?php
-$username = "root";
-$password = "Password";
+$username = "openexport";
+$password = "0-7Lamd)G~SiQ";
 $hostname = "localhost";
 
 //connection to the database
@@ -28,6 +32,33 @@ echo "Connected to MySQL<br>";
 $selected = mysql_select_db("openexport", $dbhandle)
   or die("Could not select openexport");
 echo "Selected openexport<br>";
+
+//Get all contents of the UK table
+$result = mysql_query("SELECT * FROM DE")
+  or die("Could not complete search");
+echo "Search Completed<br><br>";
+//Display contents in a nice table
+echo "<h1> DE TABLE CONTENTS </h1>";
+echo '<table border="1">';
+echo "<tr><th>Document Number</th><th>Description</th><th>Publisher</th><th>Status</th><th>Publication Date</th></tr>";
+while($row = mysql_fetch_array($result)){
+  echo "<tr><td>";
+  echo $row['DOCUMENT_NUMBER'];
+  echo "</td><td>";
+  echo $row['DESCRIPTION'];
+  echo "</td><td>";
+  echo $row['PUBLISHER'];
+  echo "</td><td>";
+  echo $row['STATUS'];
+  echo "</td><td>";
+  echo $row['PUBLICATION_DATE'];
+  echo "</td></tr>";
+}
+echo "</table>";
+
+echo "<h1> UK TABLE CONTENTS </h1>";
+
+
 //Get all contents of the UK table
 $result = mysql_query("SELECT * FROM UK WHERE STATUS LIKE '%Current%' AND DOCUMENT_NUMBER LIKE '%BS EN%'")
   or die("Could not complete search");
@@ -70,7 +101,7 @@ while($row = mysql_fetch_array($result)){
 }
 echo "</table>";
 
-$result = mysql_query("SELECT * FROM TARIFF LIMIT 0, 1000")
+$result = mysql_query("SELECT * FROM TARIFF LIMIT 0, 100")
   or die("Could not complete search");
 echo "Search Completed<br><br>";
 //Display contents in a nice table
