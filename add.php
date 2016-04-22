@@ -3,7 +3,7 @@
 
 <?php
 $username = "root";
-$password = "7!24aAbv62@";
+$password = "Password";
 $hostname = "localhost";
 //connection to the database
 $dbhandle = mysql_connect($hostname, $username, $password)

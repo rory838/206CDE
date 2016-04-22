@@ -21,7 +21,7 @@ Publication Date: <input type="text" name="date" />
 
 <?php
 $username = "openexport";
-$password = "0-7Lamd)G~SiQ";
+$password = "Password";
 $hostname = "localhost";
 
 //connection to the database

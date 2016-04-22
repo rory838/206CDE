@@ -30,7 +30,7 @@ function getmicrotime(){
 }
 
 $username = "openexport";
-$password = "0-7Lamd)G~SiQ";
+$password = "Password";
 $hostname = "localhost";
 
 //connection to the database
